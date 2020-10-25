@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter
+import time
 
 app=Tk()
 app.geometry('218x320')
@@ -8,6 +9,9 @@ app.title("Amshen's Calc")
 
 #Variuble Declaration
 screen_font = ('Verdana',25)
+mode=True
+bk='white'
+fk='black'
 
 #FUNCTIONS
 def btn_press(num):
@@ -19,15 +23,34 @@ def clear():
     screen.delete(0,END)
 
 def equal():
-    eq=screen.get()
-    eq=str(eval(eq))
-    screen.delete(0,END)
-    screen.insert(0,eq)
+    try:
+        eq=screen.get()
+        eq=str(eval(eq))
+        screen.delete(0,END)
+        screen.insert(0,eq)
+    except:
+        screen.delete(0,END)
+        er="ERROR!"
+        screen.insert(0,er)
+        
+        
+        
+
+def mode():
+    global bk
+    global fk
+    global mode
+    if(mode):
+        bk='balck'
+        fk='cyan'
+        mode=True
+
+
 
 
 #screen
 screen=tkinter.StringVar()
-screen=Entry(app,font=screen_font,width=10, textvariable = screen)
+screen=Entry(app,font=screen_font,width=10,textvariable = screen,bg=bk,fg=fk)
 screen.grid(row=0,column=0,columnspan=5)
 
 #first row
@@ -43,7 +66,7 @@ btn_three.grid(row=4,column=0)
 AC_btn.grid(row=5,column=0)
 
 #Second row
-mode_btn=Button(text='M', height=3,width=6)
+mode_btn=Button(text='M', height=3,width=6, command=mode)
 btn_four=Button(text='4', height=3,width=6, command=lambda:btn_press('4'))
 btn_five=Button(text='5', height=3,width=6, command=lambda:btn_press('5'))
 btn_six=Button(text='6', height=3,width=6, command=lambda:btn_press('6'))
