@@ -3,8 +3,7 @@ import tkinter
 import time
 
 app=Tk()
-app.geometry('218x320')
-app.configure(background="black")
+app.geometry('211x320')
 app.title("Amshen's Calc")
 
 #Variuble Declaration
